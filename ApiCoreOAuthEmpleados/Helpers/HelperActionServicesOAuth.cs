@@ -7,9 +7,9 @@ namespace ApiCoreOAuthEmpleados.Helpers
 {
     public class HelperActionServicesOAuth
     {
-        private string Issuer { get; set; }
-        private string Audience { get; set; }
-        private string SecretKey { get; set; }
+        public string Issuer { get; set; }
+        public string Audience { get; set; }
+        public string SecretKey { get; set; }
 
         public HelperActionServicesOAuth(IConfiguration configuration)
         {
@@ -31,7 +31,7 @@ namespace ApiCoreOAuthEmpleados.Helpers
 
 
         //metodo para la configuracion de la validacion del token
-        public Action<JwtBearerOptions> GetBwtBearerOptions()
+        public Action<JwtBearerOptions> GetJwtBearerOptions()
         {
             Action<JwtBearerOptions> options = new Action<JwtBearerOptions>(options =>
             {
