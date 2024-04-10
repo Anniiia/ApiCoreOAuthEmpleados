@@ -28,5 +28,8 @@ namespace ApiCoreOAuthEmpleados.Controllers
         {
             return await this.repo.FindEmpleadoAsync(id);
         }
+
+
+
     }
 }
