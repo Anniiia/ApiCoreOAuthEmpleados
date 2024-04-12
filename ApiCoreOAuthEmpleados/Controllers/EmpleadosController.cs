@@ -26,7 +26,6 @@ namespace ApiCoreOAuthEmpleados.Controllers
             return await this.repo.GetEmpleadosAsync();
         }
 
-        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<Empleado>> FindEmpleado(int id)
         {
