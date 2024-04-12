@@ -58,7 +58,7 @@ namespace ApiCoreOAuthEmpleados.Controllers
 
             Empleado empleado = JsonConvert.DeserializeObject<Empleado>(jsonEmpleado);
 
-            List<Empleado> compis = await this.repo.GetCompisDepartamentoAsync(empleado.IdDepartamento);
+            List<Empleado> compis = await this.repo.GetCompisDepartamentoAsync(empleado.IdDepartamento); 
 
             return compis;
         }
