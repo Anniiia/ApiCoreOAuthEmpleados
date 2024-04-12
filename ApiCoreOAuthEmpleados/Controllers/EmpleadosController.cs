@@ -63,6 +63,33 @@ namespace ApiCoreOAuthEmpleados.Controllers
         }
 
 
+        [HttpGet]
+        [Route("[action]")]
+
+        public async Task<ActionResult<List<string>>> Oficios()
+        {
+            return await this.repo.GetOficiosAsync();
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+
+        public async Task<ActionResult<List<Empleado>>> EmpleadosOficio([FromQuery] List<string> oficio)
+        {
+            return await this.repo.GetEmpleadosOficioAsync(oficio);
+        }
+
+        [HttpPut]
+        [Route("[action]/{incremento}")]
+
+        public async Task<ActionResult> IncrementarSalarioOficios(int incremento, [FromQuery]List<string> oficio)
+        {
+             await this.repo.IncrementarSalarioEmpleadosOficioAsync(incremento, oficio);
+
+            return Ok();
+        }
+
+
 
 
 
