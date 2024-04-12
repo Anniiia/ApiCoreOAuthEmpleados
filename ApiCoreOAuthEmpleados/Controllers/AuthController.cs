@@ -4,7 +4,9 @@ using ApiCoreOAuthEmpleados.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace ApiCoreOAuthEmpleados.Controllers
 {
@@ -38,9 +40,18 @@ namespace ApiCoreOAuthEmpleados.Controllers
                 //debemos crear unas credenciales para incluirlas dentro del token y que estaran compuestas por el secretKey cifrado y el tipo de cifrado que deseeos incluir en el token
                 SigningCredentials credentials = new SigningCredentials(this.helper.GetKeyToken(), SecurityAlgorithms.HmacSha256);
 
+                //convertimos el empleado a fromato json
+                string jsonEmpleado = JsonConvert.SerializeObject(empleado);
+                //cremoas un array de claims con toda la informacion que deseamos guardar en el token
+                Claim[] informacion = new[]
+                { 
+                    new Claim("userData", jsonEmpleado)
+                };
+
                 //el token se genera con una clase y debemosindicar los elementos que almacenara dentro de dicho token, por ejemplo, issuer, audience o el tiempo de validacion del token
 
                 JwtSecurityToken token = new JwtSecurityToken(
+                    claims: informacion,
                     issuer:this.helper.Issuer,
                     audience: this.helper.Audience,
                     signingCredentials: credentials,
